@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: 'Press Start 2P', cursive;
+}
+
+#image {
+  max-width: 100%;
+  padding: 1rem 2rem;
+}
+
+#quote {
+  max-width: 100%;
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+#minter {
+  max-width: 100%;
+  padding: 0 2rem;
+  word-break: break-all;
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+}
