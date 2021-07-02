@@ -56,6 +56,7 @@ function init() {
 function createScene() {
   score = 0;
   // highScore = localStorage.getItem("highScore") || 0;
+  highScore = 0;
   paused = false;
   treesInPath = [];
   treesPool = [];
@@ -82,7 +83,7 @@ function createScene() {
   renderer.setSize(sceneWidth, sceneHeight);
   dom = document.getElementById("game");
   dom.appendChild(renderer.domElement);
-  
+
   createTreesPool();
   addWorld();
   addBall();
@@ -212,7 +213,7 @@ function handleKeyDown(keyEvent) {
       paused = true;
     }
   } else {
-    if ((keyEvent.keyCode === 38  || keyEvent.keyCode === 87 || keyEvent.keyCode === 32) && !jumping && !paused) {  
+    if ((keyEvent.keyCode === 38  || keyEvent.keyCode === 87 || keyEvent.keyCode === 32) && !jumping && !paused) {
       bounceValue = 0.11;
       jumping = true;
     }
@@ -247,7 +248,7 @@ function handleSwipe(direction) {
       paused = true;
     }
   } else {
-    if (direction == 'up' && !jumping && !paused) {  
+    if (direction == 'up' && !jumping && !paused) {
       bounceValue = 0.11;
       jumping = true;
     }
@@ -396,7 +397,7 @@ function createTree() {
     shading: THREE.FlatShading,
   });
   midPointVector = treeGeometry.vertices[0].clone();
-  
+
   blowUpTree(treeGeometry.vertices, sides, 0, scalarMultiplier);
   tightenTree(treeGeometry.vertices, sides, 1);
   blowUpTree(treeGeometry.vertices, sides, 2, scalarMultiplier * 1.1, true);
@@ -486,16 +487,16 @@ function update() {
       ball.position.x,
       currentLane,
       4 * clock.getDelta()
-    ); 
+    );
     bounceValue -= gravity;
     if (clock.getElapsedTime() > treeReleaseInterval) {
       clock.start();
       addPathTree();
-  
+
       score += 1;
       scoreText.innerHTML = `Score: ${score.toString()}`;
     }
-  
+
     doTreeLogic();
     doExplosionLogic();
     render();
@@ -574,7 +575,7 @@ function doDifficultyLogic() {
   } else if (rollingSpeed < 0.0095) {
     rollingSpeed += 0.00001
   }
-  
+
   if (score === 0) {
     treeReleaseInterval = 0.5;
   } else if (treeReleaseInterval > 0.2) {
@@ -597,7 +598,7 @@ function onWindowResize() {
     titleText.style.fontSize = 32 + "px";
     titleText.style.left = window.innerWidth / 2 - 190 + "px";
   }
-  
+
   if(window.innerWidth < 600) {
     pausedText.style.fontSize = 12 + "px";
     pausedText.style.top = 45 + "px";
@@ -607,7 +608,7 @@ function onWindowResize() {
     pausedText.style.top = 50 + "px";
     pausedText.style.left = 30 + "px";
   }
-  
+
   if(window.innerWidth < 600) {
     scoreText.style.fontSize = 12 + "px";
     scoreText.style.top = 65 + "px";
@@ -617,7 +618,7 @@ function onWindowResize() {
     scoreText.style.top = 80 + "px";
     scoreText.style.left = 30 + "px";
   }
-  
+
   if(window.innerWidth < 600) {
     highText.style.fontSize = 12 + "px";
     highText.style.top = 85 + "px";
